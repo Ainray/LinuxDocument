@@ -1,5 +1,6 @@
 ssh::
         + remote host as ssh server, local host as client
+        + local save private key, remote save public key in "authorized_keys" file
 
         + generate key in client
 

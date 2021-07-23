@@ -382,6 +382,9 @@ ipython::
     run script by
         run main.py
 
+    edit script by
+        edit main.py
+
     debug script by
         run -d main.p
 

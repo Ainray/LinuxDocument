@@ -280,3 +280,29 @@ gpg --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
 gpg -a --export 7721F63BD38B4796 | sudo apt-key add -
 git branch -a
 git checkout develop
+git branch <new_branch>
+git merge <src_branch>
+git remote -v
+git fetch origin develop:tmp
+git diff tmp
+git merge tmp
+git branch  -d tmp
+git push --set-upstream origin master
+git merge tmp --allow-unrelated-histories
+git checkout master
+sudo apt-get autoclean
+git branch -m linux IEEWIN7
+ls -lSh
+du -sh *|sort -hr
+git clean -f
+git clean -n
+git reset --hard 0c8789
+git clean -df .
+env LANG=zh_CN.UTF-8 wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DingDing/main/current/DingTalk.exe
+env LANG=zh_CN.utf8 wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Tencent/TIM/Bin
+ffmpeg -i 1.avi 1.gif
+g++ -o opengl_version opengl_version.c -lGL -lglut -lGLU
+find . -iname "*.cpp" |xargs egrep -i "Failed to load las"
+git clone ~/ZfracUtil ./ZfracUtil
+pdftoppm 规范变换与电流连续性定量.pdf wechat20210622 -png
+for file in *.pdf; do pdf2png ${file}; done

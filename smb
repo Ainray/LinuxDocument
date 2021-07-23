@@ -22,7 +22,14 @@
     create mask = 0700
     directory mask = 0700
 
-sudo smbpasswd -a inray
+
+note::
+password::
+passwd::
+        login in Windows should use "user" configured in smb.conf
+    instead of user in Windows.
+
+    sudo smbpasswd -a inray
 
 symbol::
 links::
