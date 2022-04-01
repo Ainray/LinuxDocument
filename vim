@@ -73,11 +73,16 @@ Spellcheck::
 regular::
 zero::
 count::
+find::
+regular::
+replace::
     *   any number
     \+  one or more
     \w  [a-zA-z]
     example:
         /^ *local\+      "matching leading local
+        :%/^ \+[0-9]\+//] "replace leading numbers
+
 Special characters::
     code of current character,
         ga  " ascii

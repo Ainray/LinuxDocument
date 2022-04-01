@@ -21,6 +21,7 @@ A: gpg --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
         subkeys.pgp.net
         www.gpg-keyserver.de
 
+buster::
 update log::
     20211223, update to bullseye
         + kernal update, maually update by 
@@ -32,6 +33,75 @@ update log::
             refer to matlab problem
         + vmware cannot run
             update vmware into 15.5.5
+
+WSL::
+migration from Alienware  into AMD WSL
+        + install WSL in windows
+          wsl.exe -l -o // list available distriubtions
+          wsl.exe --install -d Debian
+        + access WSL data in Windows host by
+        + physical file system path
+          C:\Users\inray\AppData\Local\Packages\TheDebianProject.DebianGNULinux_76v4gfsz19hv4\LocalState\rootfs
+
+        + configure apt first
+          sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+          sudo apt-get install dirmngr
+          gpg --keyserver keyserver.ubuntu.com  --recv  648ACFD622F3D138 0E98404D386FA1D9 605C66F00D6C9793
+          gpg -a --export  648ACFD622F3D138 0E98404D386FA1D9 605C66F00D6C979 |sudo apt-key add -
+
+        + install 
+          sudo apt install bash-completion #need restart bash
+          sudo apt install rsync ssh
+          sudo apt install ssh
+          sudo apt install vim
+          sudo apt install exuberant-ctags 
+          sudo apt install git
+          sudo apt-get install vim-pathogen 
+
+        + one-line command is 
+          sudo apt install bash-completion rsync ssh vim exuberant-ctags git vim-pathogen 
+
+        + generate ssh  connection, refer ~/.note ssh, AMD WSL is local machine
+        + migration by rsync
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.vim/ ~/.vim
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.note/ ./.note
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bash/ ./.bash
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/Prj/ ./Prj
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.vimrc ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bash_settings ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bash_aliases ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bashrc ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bash_profile ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.rsync-filter  /home/inray/
+
+          rsync -av --info=progress2 inray@192.16.27.1:/usr/local/sbin/backup ~/
+          sudo chown root:root backup
+          sudo mv backup /usr/local/sbin
+
+        + deal with winsda4
+          mkdir /mnt/e/winsda4
+          ln -s /mnt/e/winsda4 winsda4
+          mkdir winsda4/work
+
+        + change backup in AMD
+        + configure WSL to support linux permission
+            sudo umount /mnt/e
+            sudo mount -t drvfs E: /mnt/e/ -o metadata
+            sudo chown inray:inray -R winsda4
+        + /etc/wsl.conf
+            [automount]
+            enabled = true
+            mountFsTab = true
+            options = "metadata,uid=1000,gid=1000,umask=0700,fmask=0700,dmask=0700"
+
+        + backup Linux into AMD
+
+        + vim bug 
+            set t_u7=         "disable vim in replace mode when it is run
+        + WSL terminal chinese
+            vim /etc/locale.gen and enable ZH*
+            sudo locale-gen
+            and change WSL terminal font into "SimHei" from the menu.
 
 hardware::
     information extraction,

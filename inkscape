@@ -1,0 +1,15 @@
+rotate::
+rotate a line::
+   ALT + ] or [
+   CTL + ] or [
+
+Greek::
+Unicode::
+    CTRL + U : 0b3c :μ  
+
+Size::
+font::
+linewidth::
+    text: simsun 10, 
+    8cm /3.15 width picture: font simsun, bold, 9 
+    matlab original pdf: linewidth 1, width 3.15*1.95 
