@@ -1,0 +1,11 @@
+no icon::
+    sudo apt-get install libqt5libqgtk2 libqt5svg5
+    sudo apt-get install qt5-style-plugins qt5-style-plugins:i386
+
+    sudo apt-get install plasma-integration(maybe the answer)
+    export XDG_CURRENT_DESKTOP=KDE (maybe the answer)
+
+    reboot
+
+refer to:
+    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=826034

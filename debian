@@ -1,3 +1,108 @@
+FQA::
+
+E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)
+E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?
+A: sudo rm /var/lib/dpkg/lock
+E: Could not get lock /var/lib/apt/lists/lock - open (11:Resource temporarily unavailable)
+E: Unable to lock directory /var/lib/apt/lists/
+A: sudo rm /var/cache/apt/archives/lock
+   sudo rm /var/lib/apt/lists/lock
+E: startx ... lost
+A: add .xinitrc file
+E: a start job is running for raise network interface
+A: modify "TimeoutStartSec=2s" in /etc/systemd/system/network-online.target.wants/networking.service
+E: GPG error: http://dl.google.com/linux/earth/deb stable Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 78BD65473CB3BD13
+A: gpg --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
+   gpg -a --export 7721F63BD38B4796 | sudo apt-key add -
+   possible server is,
+        keyring.debian.org
+        keyserver.ubuntu.com
+        pgp.mit.edu
+        subkeys.pgp.net
+        www.gpg-keyserver.de
+
+buster::
+update log::
+    20211223, update to bullseye
+        + kernal update, maually update by 
+            apt show linux-image
+            sudo apt-get install linux-image-5.10.0-10-amd64
+        + Windows cannot access samba shared directories, install samba by
+            sudo apt-get install samba
+        + matlab cannot run when plotting
+            refer to matlab problem
+        + vmware cannot run
+            update vmware into 15.5.5
+
+WSL::
+migration from Alienware  into AMD WSL
+        + install WSL in windows
+          wsl.exe -l -o // list available distriubtions
+          wsl.exe --install -d Debian
+        + access WSL data in Windows host by
+        + physical file system path
+          C:\Users\inray\AppData\Local\Packages\TheDebianProject.DebianGNULinux_76v4gfsz19hv4\LocalState\rootfs
+
+        + configure apt first
+          sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+          sudo apt-get install dirmngr
+          gpg --keyserver keyserver.ubuntu.com  --recv  648ACFD622F3D138 0E98404D386FA1D9 605C66F00D6C9793
+          gpg -a --export  648ACFD622F3D138 0E98404D386FA1D9 605C66F00D6C979 |sudo apt-key add -
+
+        + install 
+          sudo apt install bash-completion #need restart bash
+          sudo apt install rsync ssh
+          sudo apt install ssh
+          sudo apt install vim
+          sudo apt install exuberant-ctags 
+          sudo apt install git
+          sudo apt-get install vim-pathogen 
+
+        + one-line command is 
+          sudo apt install bash-completion rsync ssh vim exuberant-ctags git vim-pathogen 
+
+        + generate ssh  connection, refer ~/.note ssh, AMD WSL is local machine
+        + migration by rsync
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.vim/ ~/.vim
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.note/ ./.note
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bash/ ./.bash
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/Prj/ ./Prj
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.vimrc ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bash_settings ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bash_aliases ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bashrc ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.bash_profile ~/
+          rsync -av --info=progress2 inray@192.16.27.1:/home/inray/.rsync-filter  /home/inray/
+
+          rsync -av --info=progress2 inray@192.16.27.1:/usr/local/sbin/backup ~/
+          sudo chown root:root backup
+          sudo mv backup /usr/local/sbin
+
+        + deal with winsda4
+          mkdir /mnt/e/winsda4
+          ln -s /mnt/e/winsda4 winsda4
+          mkdir winsda4/work
+
+        + change backup in AMD
+        + configure WSL to support linux permission
+            sudo umount /mnt/e
+            sudo mount -t drvfs E: /mnt/e/ -o metadata
+            sudo chown inray:inray -R winsda4
+        + /etc/wsl.conf
+            [automount]
+            enabled = true
+            mountFsTab = true
+            options = "metadata,uid=1000,gid=1000,umask=0700,fmask=0700,dmask=0700"
+
+        + backup Linux into AMD
+
+        + vim bug 
+            set t_u7=         "disable vim in replace mode when it is run
+        + WSL terminal chinese
+            vim /etc/locale.gen and enable ZH*
+            sudo locale-gen
+            and change WSL terminal font into "SimHei" from the menu.
+
 hardware::
     information extraction,
 
@@ -177,6 +282,8 @@ upgrade::
             sudo apt clean
             sudo shutdown -r now
             lsb_release -a
+        when error occurs, try
+            sudo aptitude -f install
 
 file permission::
     man umask
@@ -308,6 +415,15 @@ usb::
         sudo ntfslabel /dev/sdb1 Debian
     fix ntfs file system due to Windows fast boot or Hibernate, read-only file system
         ntfsfix /dev/sda10
+
+cifs::
+share::
+windows::
+    
+    + configure Windows first by share it
+    + check the share name in Windows, access "\\192.16.27.212" in Windows
+    + empty password in mount by "password="
+        
 
 cli:
     booted into cli directly when Linux is started

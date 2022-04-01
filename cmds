@@ -306,3 +306,28 @@ find . -iname "*.cpp" |xargs egrep -i "Failed to load las"
 git clone ~/ZfracUtil ./ZfracUtil
 pdftoppm 规范变换与电流连续性定量.pdf wechat20210622 -png
 for file in *.pdf; do pdf2png ${file}; done
+git remote set-url  origin git@gitee.com:ainray/Review.git
+git reflog
+git update-index --assume-unchanged CMakeLists.txt
+git update-index --no-assume-unchanged CMakeLists.txt
+git reset HEAD
+git branch -D master
+git checkout -b master cb313
+git cherry-pick 27ee088
+git diff backup:src/zuModelLoad.cpp master:Source/zuModelLoad.cpp
+git worktree add /tmp/zfracutil/ backup
+matlab -softwareopengl
+ls -l |egrep ^d |awk '{print }'
+apt-file search "gl.h"
+git log --pretty=tformat: --numstat |gawk '{add += $1;subs += $2;loc += $1+ $2} END  {printf "added lines: %s removed lines : %s total lines: %s\n", add, subs, loc}'
+find . -name *.pdf -exec sh -c 'mv $0 ~/refs/' {} \;
+simplescreenrecorder
+ls -v | xargs gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=test_combine.pdf
+git diff 3e86:Source/owformular.cpp  a1a99:Source/owformular.cpp
+find . -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort | uniq -c | sort -n
+git diff --numstat |gawk '{add += $1;subs += $2;loc += $1+ $2} END {printf "added lines: %s removed lines : %s total lines: %s\n", add, subs, loc}'
+cat * |sed "/^ *%.*/d; /^[[:space:]]*$/d" |wc -l
+cat * |sed "/^ *%.*/d; /^[[:space:]]*$/d" |wc -l
+git cherry-pick 8b09792
+git push -u origin develop
+dpkg-repack dirmngr

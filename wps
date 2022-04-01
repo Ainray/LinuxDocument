@@ -1,0 +1,7 @@
+fonts::
+
+    cp fonts from Windows into Linux
+
+    sudo mkfontscale 
+    sudo mkfontdir 
+    sudo fc-cache 

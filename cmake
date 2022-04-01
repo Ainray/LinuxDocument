@@ -1,3 +1,11 @@
+VS::
+    + build release/install by running
+
+        cmake --build . --config Release --target install
+        cmake --build . --target ALL_BUILD --config Release
+
+    in CMD
+
 path::
     CMAKE_SOURCE_DIR 
     CMAKE_BINARY_DIR
@@ -140,3 +148,5 @@ target::
         . Shared library (for dll platforms, e.g. Windows, Cygin) the 
     DLL part of a shared library is treated as a runtime target and 
     the corresponding import library is treated as an archive targets. 
+
+

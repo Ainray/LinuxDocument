@@ -10,7 +10,7 @@ topic: rsync
 
         rsync -av --info=progress2 /mnt/wing/Prj/03-refs/ 03-refs
         
-        Be careful that the leading "/" of the source, if no "/", the last part of source is "03-refs",
+        Be careful that the tailing "/" of the source, if no "/", the last part of source is "03-refs",
     then the new sub-directory is created in the destination directory "03-refs", in most case, that is
     not what you want.
         Sometimes, you want synchronize the source and destination directories, thus need to delete 
@@ -26,10 +26,11 @@ topic: rsync
         
             rsync -avR --info=progress2 /home/inray/utorrent d1/
             rm -rf d1/home  # safe action
+        + only a soft link is copy
 
         You can also limit the implied path by adding "./" in the path (ending "/" is necessary).
-
             rsync -avR --info=progress2 /home/inray/./utorrent d1/
+        + utorrent directory will created in d1
 
         Be careful that the difference between 
 
@@ -43,3 +44,30 @@ topic: rsync
     so the original symbolic link file "utorrent" now is a directory, its contents are coped into
     "d1/home/inray/utorrent/".
 
+    directory with -R option
+        rsync -avR --info=progress2 /home/inray/Cash/ /tmp/
+        rsync -avR --info=progress2 /home/inray/Cash /tmp/
+    same, implied path and its contents are created
+        rsync -avR --info=progress2 /home/inray/./Cash/ /tmp/
+        rsync -avR --info=progress2 /home/inray/./Cash /tmp/
+    same, no implied path and only its contents are created
+
+    soft link in source with -R options
+        + rsync -avR --info=progress2 /home/inray/zfracutil /tmp/ 
+    implied path is created and zfracutil is only a soft link, and its reference is valid
+        + rsync -avR --info=progress2 /home/inray/./zfracutil /tmp/ 
+    no implied path  and zfracutil is only a soft link, and its reference is valid
+        + rsync -avR --info=progress2 /home/inray/zfracutil/ /tmp/ 
+    implied path is created and zfracutil directory and its contents is created
+        + rsync -avR --info=progress2 /home/inray/./zfracutil/ /tmp/ 
+    no implied path  and zfracutil directory and its contents is created
+
+    soft link in source without -R options
+        + rsync -av --info=progress2 /home/inray/zfracutil /tmp/ 
+        + rsync -av --info=progress2 /home/inray/./zfracutil /tmp/ 
+    same, zfracutil is copied as a regular file and its referent path is still valid
+        + rsync -av --info=progress2 /home/inray/zfracutil/ /tmp/ 
+        + rsync -av --info=progress2 /home/inray/./zfracutil/ /tmp/ 
+    same, the contents of "zfracutil" are copied into /tmp/ directly, no ztracutil directory and no its implied path
+
+    soft link in destination
