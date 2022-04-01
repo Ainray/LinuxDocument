@@ -29,3 +29,17 @@ Github sites::
 
         ssh access
             
+conflicts::
+diff::
+merge::
+        git config --global merge.tool vimdiff
+        git mergetool
+
+        vimdiff buffers
+        ---------------------
+            LO BA RE
+              MERGE
+        ---------------------
+        diffget LO
+        diffget RE
+        :wqa 
