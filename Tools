@@ -5,3 +5,9 @@ gantt::
 ppt::
 ppt template::
     www.free-power-point-templates.com
+
+geophysics::
+    ERT,
+        https://gitlab.com/resistivity-net/bert
+
+    RES2DINV

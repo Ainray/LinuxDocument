@@ -1,0 +1,2 @@
+wsl.exe -l -o
+wsl.exe --install -d Debian

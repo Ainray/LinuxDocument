@@ -30,7 +30,7 @@ ssh::
             scp test.txt inray@192.20.16.1:/tmp/
 
 change key::
-
+change passwd::
         RSA key passphrase change
             
             ssh-keygen -p -f ~/.ssh/id_rsa
@@ -57,6 +57,7 @@ tricks::
 
     This command protect the process doing "shutdown -h now" from the termination of ssh.
 
+server::
 ssh service sshd configuration::
         Check configuration by 
                 

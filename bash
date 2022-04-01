@@ -1,6 +1,10 @@
 help::
     help set
 
+completion::
+tab::
+    sudo apt install bash-completion
+
 script::
 replay::
     script -t 2>~/update-buster0.time -a ~/update-buster0.script

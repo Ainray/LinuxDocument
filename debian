@@ -1,3 +1,38 @@
+FQA::
+
+E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)
+E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?
+A: sudo rm /var/lib/dpkg/lock
+E: Could not get lock /var/lib/apt/lists/lock - open (11:Resource temporarily unavailable)
+E: Unable to lock directory /var/lib/apt/lists/
+A: sudo rm /var/cache/apt/archives/lock
+   sudo rm /var/lib/apt/lists/lock
+E: startx ... lost
+A: add .xinitrc file
+E: a start job is running for raise network interface
+A: modify "TimeoutStartSec=2s" in /etc/systemd/system/network-online.target.wants/networking.service
+E: GPG error: http://dl.google.com/linux/earth/deb stable Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 78BD65473CB3BD13
+A: gpg --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
+   gpg -a --export 7721F63BD38B4796 | sudo apt-key add -
+   possible server is,
+        keyring.debian.org
+        keyserver.ubuntu.com
+        pgp.mit.edu
+        subkeys.pgp.net
+        www.gpg-keyserver.de
+
+update log::
+    20211223, update to bullseye
+        + kernal update, maually update by 
+            apt show linux-image
+            sudo apt-get install linux-image-5.10.0-10-amd64
+        + Windows cannot access samba shared directories, install samba by
+            sudo apt-get install samba
+        + matlab cannot run when plotting
+            refer to matlab problem
+        + vmware cannot run
+            update vmware into 15.5.5
+
 hardware::
     information extraction,
 
@@ -177,6 +212,8 @@ upgrade::
             sudo apt clean
             sudo shutdown -r now
             lsb_release -a
+        when error occurs, try
+            sudo aptitude -f install
 
 file permission::
     man umask
@@ -308,6 +345,15 @@ usb::
         sudo ntfslabel /dev/sdb1 Debian
     fix ntfs file system due to Windows fast boot or Hibernate, read-only file system
         ntfsfix /dev/sda10
+
+cifs::
+share::
+windows::
+    
+    + configure Windows first by share it
+    + check the share name in Windows, access "\\192.16.27.212" in Windows
+    + empty password in mount by "password="
+        
 
 cli:
     booted into cli directly when Linux is started

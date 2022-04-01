@@ -7,6 +7,22 @@ function::
        !, force redefine funtion with the same name as a existed function
        {name}, first char must be caplitalized
        [arguments], conveyed as a pointer-like way
+
+buffers::
+files::
+    list buffers/files by
+        :buffers
+        :files
+
+    close a specified file
+        bd 4
+
+autoread::
+udpate::
+dynamic::
+    update file automatically by
+        Autoread
+
 Tricks::
   command-line window:
     q:(in normal mode) to open it
@@ -48,6 +64,7 @@ Tricks::
 Spellcheck::
   set spelllang=en
   set spell "to start spell
+  set nospell " to stop spell
   ]s "jump to next misspelled word
   z= "see suggestions
   zg "add misspelled word under cursor to your personal spellfile, maybe ~/.vim/spell/en.utf-8.add
@@ -84,7 +101,7 @@ word separator::
         set iskeyword=+-
     yw
     yl
-     
+      
 help::
 helptags::
 tags::
@@ -119,6 +136,54 @@ n::
         \{-,m}
 
 plugin::
+    list loaded scripts
+        :scriptnames
+
+c/c++ plugin::
+    NERDTree
+    Tlist
+    GitGutter
+    Ack(should first install ag by apt-get install silversearch-ag)
+    omni completion
+    echofunc
+
+omni configuration:
+    + tags
+        mkdir ~/.vim/tags
+        download stdlibc++ ctags, and unzip into ~/.vim/tags
+        cd ~/.vim/tags
+        ctags -R --sort=1 --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f cpp cpp_src
+        ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f gl /usr/include/GL/   # for OpenGL
+        ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f sdl /usr/include/SDL/ # for SDL
+        ctags -R --sort=1 --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f linuxheader /usr/include/linux/ # Linux header
+        ctags -R --sort=1 --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f qt5 /opt/Qt/5.15.2/gcc_64/include/ # Qt
+
+    + vimrc configuration 
+         au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+         set tags+=~/.vim/tags/cpp
+         set tags+=~/.vim/tags/gl
+         set tags+=~/.vim/tags/linuxheader
+         let OmniCpp_NamespaceSearch = 1
+         let OmniCpp_GlobalScopeSearch = 1
+         let OmniCpp_ShowAccess = 1
+         let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+         let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+         let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+         let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+         let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+         "automatically open and close the popup menu / preview window
+         au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+         set completeopt=menuone,menu,longest,preview
+        " <C-N> <C-P> navigate
+        " <C-X><C-O> manually open omnicompletion
+        "---------------clang-complete------------"
+        "let g:clang_library_path='/usr/lib/llvm-3.9/lib'
+        "let g:clang_library_path='/usr/lib/llvm-3.9/lib/libclang-3.9.so.1'
+        ":messages after startup could shou something useful
+        "<C-X C-U>"
+    +   build tags of your own project with Ctrl-F12
+        map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
+
 taglist:: source code brower
     + dependence on ctags, install it by 
         sudo apt-get install exuberant-ctags
@@ -147,3 +212,5 @@ taglist:: source code brower
     + toggle, in normal 
         map <silent> <F10> :TlistToggle<CR>
 
+echofunc::
+    Alt _ Alt= to scroll

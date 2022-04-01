@@ -1,3 +1,31 @@
+update to bullseye::
+    cannot run,
+        https://www.cnblogs.com/zero-vic/p/11584437.html
+    run by one of these three methods,
+        + check vmware version by,
+            vmware -v
+        + check kernal version by,
+            uname -r
+        it gives 15.5.5
+        + first git by 
+            git clone git@github.com:mkubecek/vmware-host-modules.git
+        + checkout into 15.5.5 version by
+            git checkout w15.5.5-k5.10
+        + make by
+            make -j 4 'VM_UNAME=$(uname -r)'
+        + install by
+            sudo make install
+        + restart by 
+            sudo service vmware restart
+        + run vmware by one the these three methods, by
+            . replace /usr/bin/vmware-modconfig by a link to /bin/true
+            . edit /usr/bin/vmware (or /usr/bin/vmplayer) so that it does not run vmware-modconfig
+            . run /usr/lib/vmware/bin/vmware directly without the wrapper script
+        I use the third one, and create a alias by in ~/.bash_alias
+             alias vmware='/usr/lib/vmware/bin/vmware'
+        + now can run VMware by
+            vmware
+
 no 3d support::
    check host,
         glxinfo |egrep -i direct 

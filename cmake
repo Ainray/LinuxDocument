@@ -1,3 +1,14 @@
+example::
+minimal::
+
+VS::
+    + build release/install by running
+
+        cmake --build . --config Release --target install
+        cmake --build . --target ALL_BUILD --config Release
+
+    in CMD
+
 path::
     CMAKE_SOURCE_DIR 
     CMAKE_BINARY_DIR

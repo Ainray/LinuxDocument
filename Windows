@@ -6,6 +6,9 @@ Win10 close Windows Defender
     + Create a new DWORD(32 bit) key value with name of
       "DisableAntiSpyware", value of 1
 
+map local path to drive letter
+    + subst Y: /local_path
+
 memory capacity::
 memory::
     wmic memphysical get maxcapacity
