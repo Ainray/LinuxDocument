@@ -332,3 +332,4 @@ git cherry-pick 8b09792
 git push -u origin develop
 dpkg-repack dirmngr
 ssh-keygen -f id_rsa -p
+git commit --amend
