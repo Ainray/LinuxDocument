@@ -333,3 +333,4 @@ git push -u origin develop
 dpkg-repack dirmngr
 ssh-keygen -f id_rsa -p
 git checkout .gitignore --theirs 
+git commit --amend
