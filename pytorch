@@ -1,0 +1,22 @@
+::install in windows
+    + check gpu
+        dxdiag 
+
+    + install cuda by local exe 
+    + check install by 
+        nvidia-smi
+
+    + install pytorch by pip, copy the install command into miniconda
+    + check pytorch install by
+        python
+        >>> import torch
+        >>> a = torch.ones((3,1))
+        >>> a = a.cuda(0)
+        >>> b = torch.ones((3,1)).cuda(0)
+        >>> a+b
+
+    + install jupyter and d2l in miniconda
+        pip install jupyter d2l
+    + download d2l from zh-v2.d2l.ai
+    + try one example in jupyter notebook
+        /d2l-zh/pytorch/chapter_convolutional-modern/resnet.ipynb

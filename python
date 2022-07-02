@@ -1,3 +1,9 @@
+jupyter evironment::
+    apt install python3 python3-dev
+    apt isntall python3-pip
+    pip3 install jupyterlab
+    add "~/.local/bin" into PATH based on information
+
 Invoking::
             invocation of a script by,
                 

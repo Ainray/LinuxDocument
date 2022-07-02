@@ -1,3 +1,11 @@
+install::
+        wget https://download.qt.io/archive/qt/5.14/5.14.2/qt-opensource-linux-x64-5.14.2.run
+        ./qt-opensource-linux-x64-5.14.2.run
+    configure paths, 
+        pathaddmul "/opt/Qt/5.15.2/gcc_64/bin/"
+        pathaddmul "/opt/Qt/Tools/QtCreator/bin/"
+        pathaddmul "/opt/Qt/5.15.2/gcc_64/lib/" LD_LIBRARY_PATH
+    
 refer::
     https://doc.qt.io/qt-5/configure-options.html
 
@@ -36,4 +44,8 @@ to path, check in cmd.
     + jom /W /S -j4
     + jom install
 
+
+:: build from git in Debian
+    + source reporosity
+        https://download.qt.io/archive/qt/
 

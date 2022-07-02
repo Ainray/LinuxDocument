@@ -20,6 +20,22 @@ A: gpg --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
         pgp.mit.edu
         subkeys.pgp.net
         www.gpg-keyserver.de
+who am i::
+distribution::
+version::
+    cat /etc/*-release
+
+install chrome::
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+locate::
+	should updatedb manually, if locate does not work
+
+default::
+alternative::
+editor::
+        # set default editor to Vim
+        export EDITOR=vim
 
 buster::
 update log::
@@ -102,6 +118,22 @@ migration from Alienware  into AMD WSL
             vim /etc/locale.gen and enable ZH*
             sudo locale-gen
             and change WSL terminal font into "SimHei" from the menu.
+        + update into stable
+           vim /etc/apt/sources.list
+           sudo apt update
+           sudo apt upgrade
+           sudo apt dist-upgrade
+        + X server
+            for Windows, 
+               install Xming or VcXsrv in Windows
+               start VcXsrv with "Disable access control" checked, note
+               that VcXsrv has fonts 
+
+            for Linux
+                echo "DISPLAY=192.169.1.8:0.0" #check IP of Windows host by "ip a" in bash
+                echo xfce4-session > ~/.xsession
+        + ccmake, install by
+             sudo apt install cmake-curses-gui
 
 hardware::
     information extraction,
