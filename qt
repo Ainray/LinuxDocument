@@ -5,7 +5,37 @@ install::
         pathaddmul "/opt/Qt/5.15.2/gcc_64/bin/"
         pathaddmul "/opt/Qt/Tools/QtCreator/bin/"
         pathaddmul "/opt/Qt/5.15.2/gcc_64/lib/" LD_LIBRARY_PATH
+deploy::
+publish::
+    + build ubuntu 18.04 (bionic) environment 
     
+    + download linuxqtdeploy imagage
+
+    + compile execute by rlease mode
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+    + deploy file system
+      . mkdir deploy directory by
+            mkdir deploy
+            cd deploy
+      . cp binary into deploy
+            cp ../build/qreg .
+      . create desktop file and icon, so at least three files in deploy 
+         . qreg, binary 
+         . qreg.png, icon
+         . qreg.desktop desktop file
+      . desktop file example 
+--------------------------------------------------------------------------------
+            [Desktop Entry]
+            Type=Application
+            Name=qreg
+            Comment=Qt deploy example
+            Exec=qreg
+            Icon=qreg
+--------------------------------------------------------------------------------
+    + deploy, by
+        ../../../linuxdeployqt-continuous-x86_64.AppImage qreg --extract-info-and-run -verbose=2 -appimage
+    options of "--extract-info-and-run" "-verbose=2" both are necessary, othersize qtdeploy does not work
+
 refer::
     https://doc.qt.io/qt-5/configure-options.html
 
