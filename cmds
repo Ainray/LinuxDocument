@@ -334,3 +334,8 @@ dpkg-repack dirmngr
 ssh-keygen -f id_rsa -p
 git checkout .gitignore --theirs 
 git commit --amend
+sudo dpkg --purge code
+ip a|head -5|awk '/^ *inet /{print }'|cut -d'/' -f1
+cat /etc/*-release
+git log --graph --decorate --oneline --all
+xz -d RDMT2020.tar.xz

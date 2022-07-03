@@ -1,4 +1,12 @@
-:: publish
+install::
+        wget https://download.qt.io/archive/qt/5.14/5.14.2/qt-opensource-linux-x64-5.14.2.run
+        ./qt-opensource-linux-x64-5.14.2.run
+    configure paths, 
+        pathaddmul "/opt/Qt/5.15.2/gcc_64/bin/"
+        pathaddmul "/opt/Qt/Tools/QtCreator/bin/"
+        pathaddmul "/opt/Qt/5.15.2/gcc_64/lib/" LD_LIBRARY_PATH
+deploy::
+publish::
 :: deploying a qt5 application Linux
     + methods,
       . distribution packages
@@ -9,7 +17,39 @@
     + refer to:
         https://wiki.qt.io/Deploying_a_Qt5_Application_Linux
         https://doc.qt.io/qt-6/linux-deployment.html
-            
+
+    + how to:
+    
+    + build ubuntu 18.04 (bionic) environment 
+    
+    + download linuxqtdeploy imagage
+
+    + compile execute by rlease mode
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+    + deploy file system
+      . mkdir deploy directory by
+            mkdir deploy
+            cd deploy
+      . cp binary into deploy
+            cp ../build/qreg .
+      . create desktop file and icon, so at least three files in deploy 
+         . qreg, binary 
+         . qreg.png, icon
+         . qreg.desktop desktop file
+      . desktop file example 
+--------------------------------------------------------------------------------
+            [Desktop Entry]
+            Type=Application
+            Name=qreg
+            Comment=Qt deploy example
+            Exec=qreg
+            Icon=qreg
+--------------------------------------------------------------------------------
+    + deploy, by
+        ../../../linuxdeployqt-continuous-x86_64.AppImage qreg --extract-info-and-run -verbose=2 -appimage
+    options of "--extract-info-and-run" "-verbose=2" both are necessary, othersize qtdeploy does not work
+
+>>>>>>> aca144d99be740748e0e153dcee45ec7d94a4e13
 refer::
     https://doc.qt.io/qt-5/configure-options.html
 
@@ -48,4 +88,8 @@ to path, check in cmd.
     + jom /W /S -j4
     + jom install
 
+
+:: build from git in Debian
+    + source reporosity
+        https://download.qt.io/archive/qt/
 

@@ -1,5 +1,53 @@
 example::
 minimal::
+--------------------------------------------------------------------------------
+    cmake_minimum_required(VERSION 3.0)
+    project(helloworld)
+    add_executable(helloworld hello.cpp)
+--------------------------------------------------------------------------------
+philosophy::
+    cmake itself is code.
+
+Organization::
+        Directories: contains CMakeLists.txt, add_subdirectory can add
+    subdirectories with CMakeLists.txt.
+        Scripts:: <script>.cmake executed by cmake -P <script>.cmake
+        Modules:: <script>.cmake files located in the CMAKE_MODULE_PATH,
+    which can be loaded with the include() command
+    
+Commands::
+        command_name(space separated list of strings)
+        + Scripting commands change state of command processor
+        + project commands, create/modify build targets
+        + command invocation are not expressions
+
+Variable::
+        set(variable value)
+        message(STATUS "hello, ${variable}")
+
+Comments::
+        block comments
+        #[ 
+        #]
+        #[[ 
+        #]]
+
+Windows::
+Console::
+    WIN32 vs Console,
+----------------------------------------------------------------
+        if (CMAKE_BUILD_TYPE STREQUAL "Release"  OR  CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+            if(WIN32)
+                if(MSVC)
+                    set_target_properties(${NAME} PROPERTIES
+                            WIN32_EXECUTABLE YES
+                            LINK_FLAGS
+                            "/ENTRY:mainCRTStartup"
+                            )
+                endif()
+            endif()
+        endif()
+----------------------------------------------------------------
 
 VS::
     + build release/install by running

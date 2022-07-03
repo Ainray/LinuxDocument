@@ -8,4 +8,6 @@ uft8::
 check coding::
     enca
 
-
+zip file::
+MBCS::
+    7z x 20220502第五天小鼠.zip -mcp=936
