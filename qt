@@ -1,3 +1,15 @@
+:: publish
+:: deploying a qt5 application Linux
+    + methods,
+      . distribution packages
+      . standalone application bundle
+      . installer
+      . static build, not support plugin
+
+    + refer to:
+        https://wiki.qt.io/Deploying_a_Qt5_Application_Linux
+        https://doc.qt.io/qt-6/linux-deployment.html
+            
 refer::
     https://doc.qt.io/qt-5/configure-options.html
 

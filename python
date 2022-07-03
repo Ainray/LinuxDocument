@@ -1,3 +1,18 @@
+Windows::
+miniconda::
+        + install miniconda
+        + create env py3k by
+            conda create -n py3k anaconda python=3
+        + activate environment by
+            conda activate py3k
+        + deactivate environment by
+            conda deactivate
+jupyter extensions::
+        + intall extension manager by
+            pip3 install jupyter_contrib_nbextensions
+        + install extension by
+            jupyter contrib nbextensions install
+
 Invoking::
             invocation of a script by,
                 
