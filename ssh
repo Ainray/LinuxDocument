@@ -17,8 +17,7 @@ ssh::
 
             # scp
             scp .ssh/id_rsa.pub  inray@remote:/home/someone/.ssh/
-
-
+            cat id_rsa.pub >> .ssh/authorized_keys
 
         After delivery public key to remote server, test it by 
 
@@ -43,12 +42,11 @@ scp/sftp/rsync without passphrase entering::
         + 
 
 file systems::
-        + id_rsa, private key
-        + id_rsa.pub, public key
-    authorized_keys
-    config
-    known_hosts
-
+        +   id_rsa, private key (for local)
+        +   id_rsa.pub, public key (copied to)
+            authorized_keys (store public keys of clients)
+            known_hosts (cache of servers)
+            config
 
 tricks::
     shutdown remote system on ssh:

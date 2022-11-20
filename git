@@ -40,6 +40,16 @@ merge::
             LO BA RE
               MERGE
         ---------------------
+        LO, local, target, what you are merging into
+        RE, remote, source, what you are merging from
+        BA, BASE, the common ancestor of LO and RE
         diffget LO
         diffget RE
         :wqa 
+        
+        <<<<<<< HEAD
+        (content of current branch)
+        =======
+        (content of branch you are merging from)
+        >>>>>>>
+
